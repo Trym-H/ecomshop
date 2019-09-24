@@ -7,6 +7,11 @@ export const selectShopCollections = createSelector(
   shop => shop.collections
 );
 
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections
+);
+
 //denne lager en array igjen, fordi preview forventer en array
 export const selectCollectionsForPreview = createSelector(
   [selectShopCollections],
@@ -19,3 +24,8 @@ export const selectCollection = collectionUrlParam =>
     [selectShopCollections],
     collections => (collections ? collections[collectionUrlParam] : null)
   );
+
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  shop => shop.isFetching
+);
